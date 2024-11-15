@@ -85,9 +85,6 @@ VITE_BACKEND_BASE_URL=<your_backend_url>
 ```
 
 
-put this piece of code in the very beginninig of init function after error declaration in app/main/main.go
-
-
 Do the above and then in your terminal run
 
 ```bash
