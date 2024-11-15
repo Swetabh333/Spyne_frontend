@@ -42,7 +42,7 @@ The frontend has the follwing pages :
 
 - **`/cars`**
 
-  - **Component:**Carlist
+  - **Component:** Carlist
   - **Description:** Displays a list of all cars of the logged in user. Protected route requiring authentication.
 
 - **`/cars/add`**
