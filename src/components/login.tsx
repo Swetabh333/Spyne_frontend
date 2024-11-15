@@ -83,7 +83,7 @@ const Login = () => {
     if (authorized) {
         setIsLoading(false);
     } else {
-        axios.get('/verify').then((res)=>{
+        axios.get('/verify').then(()=>{
             setAuthorized(true);
             if (redirected){
                 navigate(redirected, {replace:true});
@@ -91,6 +91,7 @@ const Login = () => {
                 navigate('/cars');
             }
         }).catch((error) => {
+          console.log(error)
             setIsLoading(false);
         })
     }
