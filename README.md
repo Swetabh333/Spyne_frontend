@@ -15,8 +15,6 @@ title, description, tags match the keyword.
 
 The project is deployed at [https://spyne-frontend-fawn.vercel.app/](https://spyne-frontend-fawn.vercel.app/) .
 
-[Here](https://app.swaggerhub.com/apis-docs/SWETABHSHREYAM333/Makerble/1.0) is the api documentation.
-
 
 
 The frontend has the follwing pages :
