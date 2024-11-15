@@ -1,6 +1,6 @@
 # Spyne Task
 
-This project is created as a part of selection process for Spyne. It uses Supabase for image storage and retreival. It implements a car management system and helps perform the following tasks:
+This project is created as a part of selection process for Spyne. It uses Supabase for image storage and retreival. JWT Tokens are used for safe authentication and user management. It implements a car management system and helps perform the following tasks:
 
 - User can login/signup
 - Users can add a car with upto 10 images, title, description and tags
