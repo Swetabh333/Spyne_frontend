@@ -11,7 +11,7 @@ const Register = () => {
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await axios.post("/api/auth/register", { name, email, password });
+      await axios.post("/auth/register", { name, email, password });
       navigate("/login");
     } catch (err) {
       console.error("Registration failed", err);
@@ -32,6 +32,8 @@ const Register = () => {
           onChange={(e) => setName(e.target.value)}
           className="border rounded w-full p-2 mb-2"
           required
+          autoComplete="on"
+
         />
         <input
           type="email"
@@ -40,6 +42,7 @@ const Register = () => {
           onChange={(e) => setEmail(e.target.value)}
           className="border rounded w-full p-2 mb-2"
           required
+          autoComplete="on"
         />
         <input
           type="password"
@@ -48,6 +51,7 @@ const Register = () => {
           onChange={(e) => setPassword(e.target.value)}
           className="border rounded w-full p-2 mb-4"
           required
+          autoComplete="on"
         />
         <button
           type="submit"

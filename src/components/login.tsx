@@ -1,16 +1,16 @@
 import { useState } from "react";
 import axios from "../api/axiosConfig";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  console.log("login page");
+ 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await axios.post("/api/auth/login", { email, password });
+      await axios.post("/auth/login", { email, password });
       navigate("/cars");
     } catch (err) {
       console.error("Login failed", err);
@@ -44,6 +44,7 @@ const Login = () => {
         >
           Login
         </button>
+        <p className="mt-3">New user? <Link to={"/register"} className="text-blue-500" >Register here.</Link></p>
       </form>
     </div>
   );
