@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState,useContext,useEffect } from "react";
 import  { AxiosError } from "axios";
 import axios from "../api/axiosConfig"
 import { useNavigate, Link } from "react-router-dom";
 import { Mail, Lock, Loader, AlertCircle } from "lucide-react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Context } from "@/context/authContext";
 
 // Types for API response
 interface ValidationError {
@@ -30,6 +31,7 @@ const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState<ValidationErrors>({});
   const navigate = useNavigate();
+  const {authorized, setAuthorized, redirected} = useContext(Context);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -38,7 +40,12 @@ const Login = () => {
 
     try {
       await axios.post("/auth/login", { email, password });
-      navigate("/cars");
+      setAuthorized(true);
+      if (redirected){
+        navigate(redirected, {replace:true});
+    } else {
+        navigate('/cars');
+    }
     } catch (err) {
       if (axios.isAxiosError(err)) {
         const error = err as AxiosError<ApiError>;
@@ -71,6 +78,23 @@ const Login = () => {
       setIsLoading(false);
     }
   };
+
+  useEffect(() => {
+    if (authorized) {
+        setIsLoading(false);
+    } else {
+        axios.get('/verify').then((res)=>{
+            setAuthorized(true);
+            if (redirected){
+                navigate(redirected, {replace:true});
+            } else {
+                navigate('/cars');
+            }
+        }).catch((error) => {
+            setIsLoading(false);
+        })
+    }
+}, [])
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-gray-100 px-4 py-12">

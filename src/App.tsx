@@ -7,10 +7,13 @@ import CarList from "./components/Cars";
 import CarDetails from "./components/CarDetails";
 import AddCar from "./components/AddCar"
 import Landing from "./components/Landing"
+import { Provider } from "./context/authContext";
 
 function App() {
   return (
     <Router>
+      <Provider>
+        
       <Navbar/>
       <Routes>
         <Route path="/login" element={<Login />}></Route>
@@ -20,6 +23,7 @@ function App() {
         <Route path="/cars/add" element={<Protector>  <AddCar /> </Protector>} />
         <Route path="/cars/:id" element={<Protector><CarDetails /></Protector>} />
       </Routes>
+      </Provider>
     </Router>
   );
 }

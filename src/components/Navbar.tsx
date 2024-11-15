@@ -1,33 +1,18 @@
 import { Link, useNavigate } from "react-router-dom";
-import axios from '../api/axiosConfig';
-import { useEffect, useState } from "react";
-import { Menu, X, Home, Plus, LogOut, LogIn, UserPlus,Car } from "lucide-react";
+import { Menu, X, Home, Plus, LogOut, LogIn, UserPlus, Car } from "lucide-react";
+import { useState,useContext } from "react";
+import { Context } from "@/context/authContext";
+import axios from "axios";
+
 
 const Navbar = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { authorized } = useContext(Context);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const checkAuthStatus = async () => {
-      try {
-        await axios.get("/verify");
-        setIsAuthenticated(true);
-      } catch {
-        setIsAuthenticated(false);
-      }
-    };
-    checkAuthStatus();
-  },);
-
   const handleLogout = async () => {
-    try {
-      await axios.get("/auth/logout");
-      setIsAuthenticated(false);
-      navigate("/login");
-    } catch (err) {
-      console.error("Logout failed", err);
-    }
+    await axios.get("/auth/logout");
+    navigate("/login");
   };
 
   const closeMenu = () => {
@@ -36,7 +21,7 @@ const Navbar = () => {
 
   const NavLinks = () => (
     <>
-      {isAuthenticated ? (
+      {authorized ? (
         <>
           <Link
             to="/cars"
@@ -88,25 +73,23 @@ const Navbar = () => {
     </>
   );
 
+ 
   return (
     <nav className="bg-blue-500 shadow-lg fixed top-0 left-0 right-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          {/* Logo */}
           <Link 
-            to="/cars" 
+            to={authorized ? "/cars" : "/"} 
             className="flex items-center space-x-3 text-xl font-bold text-white hover:text-blue-100 transition-colors duration-200"
           >
             <Car size={24} />
             <span>CarGo</span>
           </Link>
 
-          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-6">
             <NavLinks />
           </div>
 
-          {/* Mobile Menu Button */}
           <div className="md:hidden">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}

@@ -1,35 +1,47 @@
-import { ReactNode, useEffect, useState } from "react";
+// import { ReactNode,useEffect } from "react";
+// import { useNavigate } from "react-router-dom";
+// import { useAuth } from '../context/authContext';
+
+// interface ProtectorProps {
+//   children: ReactNode;
+// }
+
+// const Protector: React.FC<ProtectorProps> = ({ children }) => {
+//   const navigate = useNavigate();
+//   const { isAuthenticated, loading } = useAuth();
+
+//   useEffect(() => {
+//     if (!loading && !isAuthenticated) {
+//       console.log(isAuthenticated)
+//       navigate("/login");
+//     }
+//   }, [loading, isAuthenticated, navigate]);
+
+//   if (loading) {
+//     return <div>Loading...</div>;
+//   }
+
+//   return isAuthenticated ? <>{children}</> : null;
+// };
+
+// export default Protector;
+
+import { useLocation } from "react-router-dom";
+import { Context } from "../context/authContext";
+import { ReactNode, useContext, useEffect} from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "../api/axiosConfig";
 
-interface ProtectorProps {
-  children: ReactNode;
-}
-
-const Protector: React.FC<ProtectorProps> = ({ children }) => {
-  const navigate = useNavigate();
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const verifyUser = async () => {
-      try {
-        await axios.get("/verify");
-        setIsAuthenticated(true);
-      } catch (err) {
-        console.error(err);
-        navigate("/login");
-      } finally {
-        setLoading(false);
-      }
-    };
-    verifyUser();
-  }, [navigate]);
-  if (loading) {
-    return <div>Loading...</div>;
+const Protector:React.FC<{children:ReactNode}> = ({children})=>{
+    const {authorized, setRedirected} = useContext(Context);
+    const location = useLocation();
+    const navigate = useNavigate()
+    useEffect(()=>{
+        if (!authorized){
+            setRedirected(location.pathname);
+            navigate('/')
+        }
+    }, [])
+    return (<>{authorized && (<>{children}</>) }</>)
   }
 
-  return <>{isAuthenticated ? children : null}</>;
-};
-
-export default Protector;
+  export default Protector;
