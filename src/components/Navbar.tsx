@@ -18,7 +18,7 @@ const Navbar = () => {
       }
     };
     checkAuthStatus();
-  }, []);
+  },);
 
   const handleLogout = async () => {
     try {

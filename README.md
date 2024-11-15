@@ -1,6 +1,6 @@
 # Spyne Task
 
-This project is created as a part of selection process for Spyne. It implements a car management system and helps perform the following tasks:
+This project is created as a part of selection process for Spyne. It uses Supabase for image storage and retreival. It implements a car management system and helps perform the following tasks:
 
 - User can login/signup
 - Users can add a car with upto 10 images, title, description and tags
@@ -13,11 +13,11 @@ title, description, tags match the keyword.
 
 ## Testing out the project
 
-The project is deployed at [makerble-90sx.onrender.com](makerble-90sx.onrender.com) .
+The project is deployed at [https://spyne-frontend-fawn.vercel.app/](https://spyne-frontend-fawn.vercel.app/) .
 
 [Here](https://app.swaggerhub.com/apis-docs/SWETABHSHREYAM333/Makerble/1.0) is the api documentation.
 
-**Note** - Since the project uses the free tier of render it might spin down due to inactivity , so while using the deployed link the first response might take a while , please have patience and retry in a minute. Thank you for your understanding.
+
 
 The project exposes the following endponts :
 
