@@ -6,6 +6,7 @@ import Protector from "./utils/protector";
 import CarList from "./components/Cars";
 import CarDetails from "./components/CarDetails";
 import AddCar from "./components/AddCar"
+import Landing from "./components/Landing"
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Navbar/>
       <Routes>
         <Route path="/login" element={<Login />}></Route>
+        <Route path="/" element={<Landing />}></Route>
         <Route path="/register" element={<Register />}></Route>
         <Route path="/cars" element={<Protector><CarList></CarList></Protector>}></Route>
         <Route path="/cars/add" element={<Protector>  <AddCar /> </Protector>} />
