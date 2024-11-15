@@ -58,7 +58,9 @@ const CarCard: React.FC<CarCardProps> = ({ car }) => {
       <CardFooter className="flex flex-col items-start gap-2">
         <div className="text-sm text-gray-500">Car ID: {car._id}</div>
         {car.tags && car.tags.length > 0 && (
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-col flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2">
+
             {car.tags.map((tag, index) => (
               <span
               key={index}
@@ -68,6 +70,8 @@ const CarCard: React.FC<CarCardProps> = ({ car }) => {
                 {tag}
               </span>
             ))}
+            </div>
+            <span className="text-slate-400 text-sm">click the card to expand</span>
           </div>
         )}
       </CardFooter>
