@@ -19,56 +19,50 @@ The project is deployed at [https://spyne-frontend-fawn.vercel.app/](https://spy
 
 
 
-The project exposes the following endponts :
+The frontend has the follwing pages :
 
-### Ping Route
+### Public Routes
 
-- **`/ping`**
-  - **Method:** GET
-  - **Description:** Checks whether the server is alive.
+- **`/`**
+  - **Component:** Landing
+  - **Description:** The main landing page accessible to all users.
 
 ### Authentication Routes
 
-- **`/auth/register`**
+- **`/login`**
 
-  - **Method:** POST
-  - **Description:** Registers a new user (e.g., doctor, receptionist).
+  - **Component:** Login
+  - **Description:** Allows existing users to authenticate into the system.
 
-- **`/auth/login`**
-  - **Method:** POST
-  - **Description:** Logs in an existing user.
+- **`/register`**
+  - **Component:** Register
+  - **Description:** Enables new users to create an account.
 
-### Patient Routes
+### Protected Routes
 
-- **`/patient`**
+- **`/cars`**
 
-  - **Method:** POST
-  - **Description:** Creates a new patient record. Accessible only by receptionists.
+  - **Component:**Carlist
+  - **Description:** Displays a list of all cars of the logged in user. Protected route requiring authentication.
 
-- **`/patient/:id`**
+- **`/cars/add`**
 
-  - **Method:** GET
-  - **Description:** Retrieves the data of a specific patient by their ID. Accessible by both doctors and receptionists.
+  - **Component:** AddCar
+  - **Description:** Provides a form to add a new car to the system. Protected route requiring authentication.
 
-- **`/patients`**
+- **`/cars/:id`**
 
-  - **Method:** GET
-  - **Description:** Fetches the data of all patients. Accessible by both doctors and receptionists.
+  - **Component:** CarDetails
+  - **Description:** Shows detailed information for a specific car by ID. Protected route requiring authentication.
 
-- **`/patient/:id`**
-
-  - **Method:** DELETE
-  - **Description:** Deletes a specific patient by their ID. Accessible only by receptionists.
-
-- **`/patient/:id`**
-  - **Method:** PUT
-  - **Description:** Updates the records of a specific patient by their ID. Accessible by both doctors and receptionists.
 
 ### Notes
 
-- Patient Routes are only accessible via authenticated users.
+- Protected Routes are only accessible via authenticated users.
 
 ## Setting up the project Locally
+
+Recommended to check out and setup the [backend](https://github.com/Swetabh333/Spyne_backend) first. 
 
 To set up the project paste the follwing commands in your terminal:
 
